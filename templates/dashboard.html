@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container py-5 mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold text-primary">Analytics Dashboard</h3>
+    <div>
+      <a class="btn btn-outline-primary" href="{{ url_for('predict') }}">New Prediction</a>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-3">
+      <div class="stat-card p-3 shadow-sm">
+        <small class="text-muted">Total</small>
+        <h4 class="fw-bold mt-2">{{ total }}</h4>
+        <small class="text-success">Healthy: {{ healthy }} &nbsp;•&nbsp; Rotten: {{ rotten }}</small>
+      </div>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="card p-3 shadow-sm">
+        <canvas id="lineChart" height="110"></canvas>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card p-3 shadow-sm">
+        <canvas id="pieChart" height="260"></canvas>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card p-3 shadow-sm">
+        <h6 class="mb-3">Recent Predictions</h6>
+        <div style="max-height:320px; overflow:auto;">
+          <table class="table table-borderless mb-0">
+            <thead><tr><th>Image</th><th>Label</th><th>Conf</th><th>Time</th></tr></thead>
+            <tbody>
+              {% for r in latest %}
+              <tr>
+                <td><img src="{{ url_for('static', filename='uploads/' + r.filename) }}" style="height:44px;border-radius:6px;"></td>
+                <td>{{ r.label }}</td>
+                <td>{{ r.confidence }}%</td>
+                <td>{{ r.time[:19].replace('T',' ') }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function(){
+  // safe parse
+  const raw = `{{ counts_by_day | tojson | safe }}`;
+  let dataObj = {};
+  try { dataObj = JSON.parse(raw); } catch(e){ dataObj = {}; }
+
+  const days = Object.keys(dataObj).length ? Object.keys(dataObj).reverse() : [new Date().toISOString().slice(0,10)];
+  const totals = days.map(d => dataObj[d] ? dataObj[d].total : 0);
+  const rottens = days.map(d => dataObj[d] ? dataObj[d].rotten : 0);
+
+  // gradient line
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  const gradient = lineCtx.createLinearGradient(0,0,0,200);
+  gradient.addColorStop(0,'rgba(21,101,192,0.85)');
+  gradient.addColorStop(1,'rgba(21,101,192,0.15)');
+
+  new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: days,
+      datasets: [
+        { label: 'Total', data: totals, borderColor: '#1565C0', backgroundColor: gradient, fill: true, tension:0.25, pointRadius:4 },
+        { label: 'Rotten', data: rottens, borderColor: '#FF4D4D', backgroundColor: 'rgba(255,77,77,0.12)', fill: true, tension:0.25, pointRadius:4 }
+      ]
+    },
+    options: { responsive:true, plugins:{legend:{position:'top'}} }
+  });
+
+  // pie
+  const pieCtx = document.getElementById('pieChart').getContext('2d');
+  const pieData = JSON.parse(`{{ [healthy|default(0), rotten|default(0)] | tojson | safe }}`);
+  new Chart(pieCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Healthy','Rotten'],
+      datasets: [{ data: pieData, backgroundColor:['#1E88E5','#FF5252'], hoverOffset:8 }]
+    },
+    options: { cutout:'60%', plugins:{legend:{position:'bottom'}} }
+  });
+})();
+</script>
+{% endblock %}

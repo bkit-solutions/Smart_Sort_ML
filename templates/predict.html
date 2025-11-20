@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ================= PREDICT PAGE ================= -->
+<section class="container py-5 animate__animated animate__fadeIn mt-5">
+
+  <div class="row justify-content-center">
+    <div class="col-xl-8">
+
+      <div class="card shadow-lg border-0 p-4 premium-card">
+
+        <!-- Page Header -->
+        <div class="text-center mb-4">
+          <i class="bi bi-cpu-fill text-primary" style="font-size: 2.4rem;"></i>
+          <h2 class="fw-bold text-primary mt-2">AI Image Prediction</h2>
+          <p class="text-muted">Upload an image to detect fruit/vegetable freshness</p>
+        </div>
+
+        <hr class="my-4">
+
+        <!-- Upload Form -->
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+
+          <!-- Drop Zone -->
+          <div class="mb-3">
+            <label id="dropZone" 
+                   class="drop-zone d-flex align-items-center justify-content-center p-5 rounded shadow-sm">
+
+              <div class="text-center">
+                <i class="bi bi-cloud-upload display-5 text-primary"></i>
+                <p class="mt-2 text-muted">Click or drag an image here</p>
+                <input id="fileInput" name="file" type="file" class="d-none" accept="image/*" required>
+              </div>
+
+            </label>
+          </div>
+
+          <!-- Preview -->
+          <div id="preview" class="text-center mb-3"></div>
+
+          <!-- Predict Button -->
+          <div class="d-grid mt-4">
+            <button id="predictBtn" class="btn btn-primary btn-lg predict-btn">
+              <span id="btnText">Predict</span>
+              <span id="spinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Hint -->
+        <p class="mt-4 text-muted small text-center">
+          <i class="bi bi-info-circle"></i>
+          For best accuracy, upload a clear close-up image with minimal background.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const preview = document.getElementById("preview");
+const uploadForm = document.getElementById("uploadForm");
+const predictBtn = document.getElementById("predictBtn");
+const spinner = document.getElementById("spinner");
+const btnText = document.getElementById("btnText");
+
+dropZone.onclick = () => fileInput.click();
+
+fileInput.onchange = () => {
+  const f = fileInput.files[0];
+  if (!f) return;
+
+  const url = URL.createObjectURL(f);
+
+  preview.innerHTML = `
+    <img src="${url}" 
+         class="img-fluid rounded shadow animate__animated animate__zoomIn"
+         style="max-height:360px;">
+  `;
+};
+
+uploadForm.onsubmit = () => {
+  predictBtn.disabled = true;
+  spinner.classList.remove("d-none");
+  btnText.innerText = "Processing";
+};
+</script>
+{% endblock %}

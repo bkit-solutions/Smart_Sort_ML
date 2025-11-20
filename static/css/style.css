@@ -1,150 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+/* =========================================
+   GLOBAL THEME COLORS
+========================================= */
+:root {
+    --blue-900: #0d47a1;
+    --blue-700: #1565C0;
+    --blue-500: #1e88e5;
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --muted: #6c757d;
+}
+
+/* =========================================
+   BASE
+========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: #f9f9f9;
-  scroll-behavior: smooth;
-  font-family: 'Poppins', sans-serif;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: #222;
+    padding-top: 0 !important;    /* REMOVE GAP */
 }
 
-.navbar.transparent-navbar {
-  background-color: transparent !important;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1.2rem 1rem;
-  z-index: 1000;
-  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+/* =========================================
+   NAVBAR
+========================================= */
+.nav-blue { 
+    background: var(--blue-900) !important; 
 }
 
-.navbar.transparent-navbar.scrolled {
-  background-color: rgba(0, 0, 0, 0.85) !important;
-  padding: 0.7rem 1rem;
+.navbar-brand {
+    color: #fff !important;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
-.navbar .navbar-brand {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: white !important;
+.navbar {
+    margin-bottom: 0 !important;     /* FIX GAP */
+    padding: 12px 0;
 }
 
 .navbar .nav-link {
-  font-size: 1.1rem;
-  padding: 0.5rem 1rem;
-  color: white !important;
-  transition: color 0.2s ease-in-out;
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 600;
+    margin-left: 14px;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-  color: #ffc107 !important;
-  font-weight: 600;
+    color: #ffd54f !important;
 }
 
-
-
-.hero-text h1 {
-  font-size: 4rem;
-  font-weight: 700;
+/* =========================================
+   GLOBAL GAP FIX — IMPORTANT!
+========================================= */
+.content-wrapper,
+section,
+.hero-section,
+.hero-carousel,
+.hero-slide {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
-.hero-text p {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-  color: #ddd;
+/* Remove default browser spacing */
+body > *:first-child {
+    margin-top: 0 !important;
 }
 
-.card {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.hero {
-  position: relative;
-  height: 95vh;
-  overflow: hidden;
+/* =========================================
+   HERO SECTION
+========================================= */
+.hero-section {
+    height: 88vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .hero-slide {
-  height: 95vh;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 88vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.hero-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  color: #fff;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.hero-center {
+    text-align: center;
+    z-index: 3;
 }
 
-.hero-overlay h1 {
-  font-size: 4rem;
-  font-weight: 700;
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.45);
 }
 
-.hero-overlay p {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-  color: #ddd;
+.hero-sub {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 12px;
+    opacity: 0.95;
 }
 
+/* Carousel arrows */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
+    filter: invert(1);
 }
 
-.team-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 280px;
+/* =========================================
+   FEATURES SECTION
+========================================= */
+.feature-card {
+    background: var(--card);
+    padding: 26px;
+    border-radius: 14px;
+    text-align: center;
+    border-left: 6px solid var(--blue-700);
+    transition: all .2s ease-in-out;
 }
 
-.team-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+.feature-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 38px rgba(21,101,192,0.1);
 }
 
-.predict-card {
-  border-radius: 16px;
-  transition: box-shadow 0.3s ease;
+.feature-icon {
+    font-size: 36px;
+    color: var(--blue-700);
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   PREDICT PAGE
+========================================= */
+.premium-card {
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    border-radius: 12px;
+    padding: 32px;
+    border: 1px solid rgba(21,101,192,0.05);
 }
 
 .drop-zone {
-  display: block;
-  width: 100%;
-  padding: 2rem;
-  background: #f1f1f1;
-  border: 2px dashed #ccc;
-  border-radius: 12px;
-  color: #666;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    border: 2px dashed rgba(21,101,192,0.35);
+    background: #eaf4ff;
+    padding: 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all .2s ease;
 }
 
 .drop-zone:hover {
-  background-color: #e9ecef;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(21,101,192,0.15);
 }
 
-.result-preview img {
-  border: 4px solid #dee2e6;
-  margin-top: 1rem;
-  border-radius: 12px;
+/* =========================================
+   RESULT PAGE
+========================================= */
+.result-card {
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+/* =========================================
+   TEAM SECTION
+========================================= */
+.team-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    transition: all .2s ease;
+    text-align: center;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 44px rgba(21,101,192,0.1);
+}
+
+/* =========================================
+   CONTACT SECTION
+========================================= */
+.contact-box {
+    background: linear-gradient(180deg,#ffffff,#fbfdff);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+/* =========================================
+   DASHBOARD
+========================================= */
+.card {
+    border-radius: 12px !important;
+}
+
+.stat-card {
+    padding: 18px;
+    border-radius: 12px;
+    background: var(--card);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.footer-blue {
+    background: var(--blue-900);
+    color: #e8f3ff;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.1rem; }
+    .hero-sub { font-size: 1rem; }
+    .feature-card { margin-bottom: 18px; }
+}
+/* Ensures consistent spacing for all pages except hero */
+.content-wrapper {
+    padding-top: 40px;
 }

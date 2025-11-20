@@ -1,0 +1,92 @@
+[
+  {
+    "filename": "20251120_131632_20251120_121323_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T13:16:32.635751"
+  },
+  {
+    "filename": "20251120_131558_20251120_121106_istockphoto-1386720480-612x612.jpg",
+    "label": "Tomato___Rotten",
+    "confidence": 99.47,
+    "time": "2025-11-20T13:15:58.532004"
+  },
+  {
+    "filename": "20251120_131409_20251120_121106_istockphoto-1386720480-612x612.jpg",
+    "label": "Tomato___Rotten",
+    "confidence": 99.47,
+    "time": "2025-11-20T13:14:09.827232"
+  },
+  {
+    "filename": "20251120_131326_20251120_121106_istockphoto-1386720480-612x612.jpg",
+    "label": "Tomato___Rotten",
+    "confidence": 99.47,
+    "time": "2025-11-20T13:13:26.979953"
+  },
+  {
+    "filename": "20251120_130859_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T13:08:59.516616"
+  },
+  {
+    "filename": "20251120_130844_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T13:08:44.460757"
+  },
+  {
+    "filename": "20251120_130830_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T13:08:31.019214"
+  },
+  {
+    "filename": "20251120_130749_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T13:07:49.755757"
+  },
+  {
+    "filename": "20251120_130525_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T13:05:32.353787"
+  },
+  {
+    "filename": "20251120_130026_20251120_121106_istockphoto-1386720480-612x612.jpg",
+    "label": "Tomato___Rotten",
+    "confidence": 99.47,
+    "time": "2025-11-20T13:00:27.001095"
+  },
+  {
+    "filename": "20251120_125726_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T12:57:26.410689"
+  },
+  {
+    "filename": "20251120_125719_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T12:57:19.576622"
+  },
+  {
+    "filename": "20251120_125428_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T12:54:34.794574"
+  },
+  {
+    "filename": "20251120_121323_download.jpg",
+    "label": "Banana___Healthy",
+    "confidence": 100.0,
+    "time": "2025-11-20T12:13:24.040335"
+  },
+  {
+    "filename": "20251120_121106_istockphoto-1386720480-612x612.jpg",
+    "label": "Tomato___Rotten",
+    "confidence": 99.47,
+    "time": "2025-11-20T12:11:18.279224"
+  }
+]

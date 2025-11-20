@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    /* Central container for the entire content */
+    .result-container {
+        max-width: 1100px;
+        margin: 110px auto 80px auto; /* Margin to clear fixed navbar */
+        padding: 0 15px;
+    }
+
+    /* Core Result Card Styling */
+    .result-card-main {
+        border-radius: 18px;
+        padding: 40px;
+        background: #ffffff;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        border-left: 6px solid var(--bs-primary); /* Use Bootstrap primary color for accent */
+        margin-bottom: 30px;
+    }
+
+    .result-image-box img {
+        height: 100%;
+        max-height: 380px;
+        width: auto;
+        border-radius: 14px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        object-fit: cover;
+    }
+
+    .result-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--bs-primary);
+    }
+
+    .confidence-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    /* Secondary Information Cards */
+    .info-card {
+        border-radius: 14px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        background-color: #f8f9fa; /* Light background for secondary cards */
+        height: 100%; /* Ensure uniform height in rows */
+    }
+    
+    .info-card h5 {
+        font-weight: 600;
+        color: var(--bs-dark);
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .action-badge-success {
+        background-color: #e6f7ee;
+        color: #28a745;
+    }
+    .action-badge-danger {
+        background-color: #fdeaea;
+        color: #dc3545;
+    }
+
+    .btn-pill {
+        border-radius: 30px;
+        padding: 10px 24px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .result-container { margin-top: 80px; }
+        .result-title { font-size: 2rem; }
+        .result-card-main { padding: 30px; }
+        .result-image-box { text-align: center; }
+        .result-image-box img { max-height: 250px; }
+    }
+</style>
+
+<section class="result-container">
+
+    <div class="result-card-main  mt-10">
+        <div class="row align-items-center  mt-5">
+            
+            <div class="col-lg-5 col-md-5 mb-4 mb-md-0 d-flex justify-content-center">
+                <div class="result-image-box">
+                    <img src="{{ image_url }}" alt="Analyzed Product" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-7 ps-lg-5">
+                <h1 class="result-title">{{ label }}</h1>
+                
+                <p class="mb-4 text-muted">
+                    Prediction Confidence:
+                    <span class="confidence-value text-primary">{{ confidence }}%</span>
+                </p>
+
+                {% if 'Rotten' in label %}
+                <div class="p-3 mb-4 rounded action-badge-danger shadow-sm">
+                    <h5 class="mb-0"><i class="bi bi-x-octagon-fill me-2"></i> Immediate Action Required</h5>
+                    <p class="mb-0 mt-1">
+                        Action: Discard or Segregate. The high probability of spoilage indicates the item should be removed from the batch immediately to prevent contamination.
+                    </p>
+                </div>
+                {% else %}
+                <div class="p-3 mb-4 rounded action-badge-success shadow-sm">
+                    <h5 class="mb-0"><i class="bi bi-check-circle-fill me-2"></i> Optimal Condition</h5>
+                    <p class="mb-0 mt-1">
+                        Action: Good to Process. The item is confirmed to be healthy and ready for commercial use or storage under standard recommended conditions.
+                    </p>
+                </div>
+                {% endif %}
+
+                <div class="mt-4 pt-2">
+                    <a href="{{ url_for('predict') }}"
+                        class="btn btn-outline-primary btn-pill me-3">
+                        <i class="bi bi-arrow-repeat me-1"></i> Predict Another Item
+                    </a>
+
+                    <a href="{{ url_for('dashboard') }}"
+                        class="btn btn-primary btn-pill">
+                        <i class="bi bi-bar-chart-fill me-1"></i> View Dashboard
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    ---
+
+    <div class="row g-4">
+
+        <div class="col-lg-6">
+            <div class="info-card">
+                <h5><i class="bi bi-cpu-fill me-2"></i> Model Details</h5>
+                <p class="mb-2">
+                    <strong class="text-dark">Prediction Time:</strong> {{ time_taken|default('~0.15 seconds') }} 
+                </p>
+                <p class="mb-2">
+                    <strong class="text-dark">Classification Model:</strong> MobileNetV2 (Transfer Learning)
+                </p>
+                <p class="mb-0">
+                    <strong class="text-dark">Framework:</strong> Flask & PyTorch / TensorFlow Backend
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="info-card">
+                <h5><i class="bi bi-thermometer-half me-2"></i> Recommended Processing Guidelines</h5>
+                {% if 'Rotten' in label %}
+                <p class="text-danger mb-2">
+                    Immediate Action: Remove from production line.
+                </p>
+                <p class="text-danger mb-0">
+                    Risk: High risk of mold spores spreading to other items. Do not attempt to salvage for consumption or sale.
+                </p>
+                {% else %}
+                <p class="text-success mb-2">
+                    Storage Temp: 4°C - 10°C for optimal shelf life.
+                </p>
+                <p class="text-success mb-0">
+                    Humidity: 85% - 95% relative humidity is ideal to minimize moisture loss.
+                </p>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
