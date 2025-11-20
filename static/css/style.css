@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  background-color: #f9f9f9;
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar.transparent-navbar {
+  background-color: transparent !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.2rem 1rem;
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.navbar.transparent-navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  padding: 0.7rem 1rem;
+}
+
+.navbar .navbar-brand {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white !important;
+}
+
+.navbar .nav-link {
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  color: white !important;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+
+
+.hero-text h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #ddd;
+}
+
+.card {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hero {
+  position: relative;
+  height: 95vh;
+  overflow: hidden;
+}
+
+.hero-slide {
+  height: 95vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #ddd;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+.team-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 280px;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.predict-card {
+  border-radius: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+.drop-zone {
+  display: block;
+  width: 100%;
+  padding: 2rem;
+  background: #f1f1f1;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  color: #666;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.drop-zone:hover {
+  background-color: #e9ecef;
+}
+
+.result-preview img {
+  border: 4px solid #dee2e6;
+  margin-top: 1rem;
+  border-radius: 12px;
+}

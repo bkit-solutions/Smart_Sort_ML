@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Sorting</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg transparent-navbar navbar-dark fixed-top">
+
+    <div class="container">
+      <a class="navbar-brand" href="#">Smart Sorting</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#predict">Predict</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero p-0">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <div class="hero-slide" style="background-image: url('https://www.realsimple.com/thmb/qGMzjegCFueZqHeqLUzg0maJ_pg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Fiber-Fruits-Strawberries-GettyImages-1675481388-e37bd6bfe3f345b9887fda43972060a7.jpg');">
+          <div class="hero-overlay">
+            <h1>Smart Sorting System</h1>
+            <p>AI-powered detection of rotten fruits and vegetables.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="hero-slide" style="background-image: url('https://i.ndtvimg.com/i/2017-02/fruits-and-vegetables_650x366_41486465566.jpg?im=FaceCrop,algorithm=dnn,width=345,height=250');">
+          <div class="hero-overlay">
+            <h1>Smart Sorting System</h1>
+            <p>Fast and reliable classification using deep learning.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="hero-slide" style="background-image: url('https://www.euroschoolindia.com/blogs/wp-content/uploads/2023/04/ways-to-eat-more-fruit.jpg');">
+          <div class="hero-overlay">
+            <h1>Smart Sorting System</h1>
+            <p>Optimizing food quality through smart technology.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Optional Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+
+
+  <section id="about" class="py-5 bg-light">
+  <div class="container">
+  <h2 class="text-center mb-5">Meet the Team</h2>
+  <div class="row justify-content-center g-4">
+
+    <div class="col-md-3">
+      <div class="team-card p-4 text-center h-100">
+        <h5 class="fw-bold mb-1">G. Naga Siri Teja</h5>
+        <h6 class="text-muted mb-3">Team coordinater</h6>
+        <p>
+          Oversees the project planning, task allocation, and coordination among all team members to ensure timely progress.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="team-card p-4 text-center h-100">
+        <h5 class="fw-bold mb-1">D. Sai Venkata Tejesh</h5>
+        <h6 class="text-muted mb-3">Frontend Developer</h6>
+        <p>
+          Designed and styled the user interface, handled Bootstrap layouts, animations, and carousel integrations.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="team-card p-4 text-center h-100">
+        <h5 class="fw-bold mb-1">Dharmaraju Elisha</h5>
+        <h6 class="text-muted mb-3">ML & Deployment Engineer</h6>
+        <p>
+          Trained and fine-tuned the MobileNetV2 model, implemented prediction logic, and handled deployment with Flask.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="team-card p-4 text-center h-100">
+        <h5 class="fw-bold mb-1">D. Nivas</h5>
+        <h6 class="text-muted mb-3">API & Integration</h6>
+        <p>
+          Developed Flask API, managed file upload logic, prediction endpoint, and assisted in full-stack integration.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+
+ <section id="predict" class="py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center mb-5">Upload & Predict</h2>
+    <div class="predict-card card p-5 mx-auto shadow-sm" style="max-width: 600px;">
+      
+      <form method="POST" action="/predict" enctype="multipart/form-data">
+        <div class="mb-4 text-center">
+          <label for="file-upload" class="drop-zone">
+            <span>Click or drag an image here</span>
+            <input id="file-upload" class="form-control d-none" type="file" name="file" required onchange="updateLabel(this)">
+          </label>
+          <small class="text-muted d-block mt-2" id="file-name"></small>
+        </div>
+
+        <div class="d-grid">
+          <button class="btn btn-success" type="submit" id="predictBtn">
+  <span id="btnText">Predict</span>
+  <span id="btnSpinner" class="spinner-border spinner-border-sm d-none ms-2" role="status" aria-hidden="true"></span>
+</button>
+
+        </div>
+      </form>
+
+      {% if prediction %}
+      <div class="result-preview mt-5 text-center">
+        <h5 class="mb-3">Prediction Result:</h5>
+        <p class="fw-bold text-primary fs-5">{{ prediction }}</p>
+        <img src="{{ url_for('static', filename='uploads/' + image) }}" class="img-fluid rounded shadow" style="max-height: 250px;">
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+
+  <section id="contact" class="py-5" style="background-color: #f8f9fa;">
+  <div class="container">
+    <h2 class="text-center mb-5">Contact Us</h2>
+    <div class="row align-items-start">
+      <!-- Contact Info -->
+      <div class="col-md-6 mb-4 animate__animated animate__fadeInLeft">
+  <div class="p-4 bg-white shadow rounded">
+    <h5 class="mb-3 text-primary">Reach Us</h5>
+    <p><i class="bi bi-envelope-fill me-2 text-secondary"></i><strong>Email:</strong> contact@smartsorting.ai</p>
+    <p><i class="bi bi-telephone-fill me-2 text-secondary"></i><strong>Phone:</strong> +91 9912782675</p>
+    <p><i class="bi bi-geo-alt-fill me-2 text-secondary"></i><strong>Address:</strong><br>Sheshadrirao Gudlavalleru Engineering College,<br>Gudlavalleru</p>
+  </div>
+</div>
+
+
+      <!-- Contact Form -->
+      <div class="col-md-6 animate__animated animate__fadeInRight">
+        <div class="p-4 bg-white shadow rounded">
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-control" placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Your Email</label>
+              <input type="email" class="form-control" placeholder="Enter your email">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Your message"></textarea>
+            </div>
+            <button class="btn btn-primary px-4">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="bg-dark text-white text-center py-4">
+  <div class="container">
+    <p class="mb-1">&copy; 2025 <strong>Smart Sorting</strong>. All rights reserved.</p>
+  </div>
+</footer>
+
+
+  <script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 100);
+  });
+</script>
+
+<script>
+  const form = document.querySelector("form");
+  const predictBtn = document.getElementById("predictBtn");
+  const btnText = document.getElementById("btnText");
+  const btnSpinner = document.getElementById("btnSpinner");
+
+  form.addEventListener("submit", () => {
+    predictBtn.disabled = true;
+    btnText.textContent = "Processing";
+    btnSpinner.classList.remove("d-none");
+  });
+</script>
+
+
+<script>
+  function updateLabel(input) {
+    const fileName = input.files[0]?.name || '';
+    document.getElementById("file-name").textContent = fileName;
+  }
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
